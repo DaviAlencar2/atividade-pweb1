@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>App Task Manager - Estudos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Small helper for colored proximity dot */
+    .dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 9999px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 min-h-screen p-6">
+  <div class="max-w-6xl mx-auto">
+    <header class="mb-6">
+      <h1 class="text-3xl font-bold text-slate-800">Gerenciador de Tarefas - Estudos</h1>
+      <p class="text-slate-600 mt-1">Cards em 3 colunas: Para fazer, Em andamento, Concluídas.</p>
+    </header>
+
+    <div class="mb-6 flex items-center justify-between">
+      <div>
+        <p class="text-slate-600">Adicione novas tarefas pelo botão <span class="font-semibold">+</span>.</p>
+      </div>
+      <div>
+        <button id="open-form-btn" aria-label="Adicionar tarefa" class="w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center text-2xl hover:bg-indigo-700">+</button>
+      </div>
+    </div>
+
+    <!-- Modal (hidden by default) -->
+    <div id="form-modal" class="hidden fixed inset-0 z-40 flex items-center justify-center">
+      <div class="absolute inset-0 bg-black/40" data-modal-backdrop></div>
+      <div class="relative bg-white rounded-lg shadow-lg w-full max-w-2xl mx-4 p-6 z-50">
+        <div class="flex items-start justify-between mb-4">
+          <h3 class="text-lg font-semibold">Nova tarefa</h3>
+          <button id="close-form-btn" class="text-slate-500 hover:text-slate-800">✕</button>
+        </div>
+
+        <form id="task-form" class="grid grid-cols-1 md:grid-cols-3 gap-3 items-end">
+          <div>
+            <label class="text-sm text-slate-700">Título</label>
+            <input id="title" required class="w-full mt-1 p-2 border rounded" />
+          </div>
+          <div>
+            <label class="text-sm text-slate-700">Data término</label>
+            <input id="due" type="date" required class="w-full mt-1 p-2 border rounded" />
+          </div>
+          <div>
+            <label class="text-sm text-slate-700">Nível</label>
+            <select id="level" class="w-full mt-1 p-2 border rounded">
+              <option value="low">Baixo</option>
+              <option value="medium">Médio</option>
+              <option value="high">Alto</option>
+            </select>
+          </div>
+          <div class="md:col-span-3">
+            <label class="text-sm text-slate-700">Descrição (breve)</label>
+            <textarea id="desc" rows="2" class="w-full mt-1 p-2 border rounded"></textarea>
+          </div>
+          <div class="md:col-span-3 text-right">
+            <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">Salvar tarefa</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <main>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div>
+          <h2 class="font-semibold mb-2">Para fazer</h2>
+          <div id="col-todo" class="space-y-3 min-h-[200px] p-3 bg-white rounded shadow-sm" data-status="todo"></div>
+        </div>
+        <div>
+          <h2 class="font-semibold mb-2">Em andamento</h2>
+          <div id="col-doing" class="space-y-3 min-h-[200px] p-3 bg-white rounded shadow-sm" data-status="doing"></div>
+        </div>
+        <div>
+          <h2 class="font-semibold mb-2">Concluídas</h2>
+          <div id="col-done" class="space-y-3 min-h-[200px] p-3 bg-white rounded shadow-sm" data-status="done"></div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="mt-6 text-sm text-slate-500">Salvo no armazenamento local do seu navegador.</footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
