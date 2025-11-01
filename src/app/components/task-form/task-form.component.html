@@ -1,0 +1,85 @@
+<!-- Modal (só aparece quando isVisible é true) -->
+<div 
+  *ngIf="isVisible" 
+  class="fixed inset-0 z-40 flex items-center justify-center"
+  (click)="onBackdropClick($event)">
+  
+  <!-- Fundo escuro do backdrop -->
+  <div class="absolute inset-0 bg-black/40" data-modal-backdrop></div>
+  
+  <!-- Conteúdo do modal -->
+  <div class="relative bg-white rounded-lg shadow-lg w-full max-w-2xl mx-4 p-6 z-50">
+    
+    <!-- Cabeçalho do modal -->
+    <div class="flex items-start justify-between mb-4">
+      <h3 class="text-lg font-semibold">
+        {{ taskToEdit ? 'Editar tarefa' : 'Nova tarefa' }}
+      </h3>
+      <button 
+        (click)="closeModal()" 
+        class="text-slate-500 hover:text-slate-800">
+        ✕
+      </button>
+    </div>
+
+    <!-- Formulário -->
+    <form (ngSubmit)="submitForm()" class="grid grid-cols-1 md:grid-cols-3 gap-3 items-end">
+      
+      <!-- Campo Título -->
+      <div>
+        <label class="text-sm text-slate-700">Título</label>
+        <input 
+          [(ngModel)]="title"
+          name="title"
+          type="text"
+          required 
+          class="w-full mt-1 p-2 border rounded" 
+          placeholder="Nome da tarefa" />
+      </div>
+
+      <!-- Campo Data de Término -->
+      <div>
+        <label class="text-sm text-slate-700">Data término</label>
+        <input 
+          [(ngModel)]="due"
+          name="due"
+          type="date" 
+          required 
+          class="w-full mt-1 p-2 border rounded" />
+      </div>
+
+      <!-- Campo Nível de Prioridade -->
+      <div>
+        <label class="text-sm text-slate-700">Nível</label>
+        <select 
+          [(ngModel)]="level"
+          name="level"
+          class="w-full mt-1 p-2 border rounded">
+          <option value="low">Baixo</option>
+          <option value="medium">Médio</option>
+          <option value="high">Alto</option>
+        </select>
+      </div>
+
+      <!-- Campo Descrição -->
+      <div class="md:col-span-3">
+        <label class="text-sm text-slate-700">Descrição (breve)</label>
+        <textarea 
+          [(ngModel)]="desc"
+          name="desc"
+          rows="2" 
+          class="w-full mt-1 p-2 border rounded"
+          placeholder="Detalhes sobre a tarefa"></textarea>
+      </div>
+
+      <!-- Botão de Submit -->
+      <div class="md:col-span-3 text-right">
+        <button 
+          type="submit" 
+          class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">
+          {{ taskToEdit ? 'Atualizar tarefa' : 'Salvar tarefa' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
