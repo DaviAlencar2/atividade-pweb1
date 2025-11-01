@@ -10,16 +10,13 @@ import { Task } from '../../models/task.model';
   styleUrl: './task-card.component.css'
 })
 export class TaskCardComponent {
-  // @Input permite receber dados do componente pai
-  @Input() task!: Task; // O "!" diz ao TypeScript que essa propriedade será definida
+  @Input() task!: Task;
   @Input() proximityColor: string = '';
 
-  // @Output permite enviar eventos para o componente pai
   @Output() onEdit = new EventEmitter<Task>();
   @Output() onDelete = new EventEmitter<string>();
   @Output() onMove = new EventEmitter<{ id: string, status: 'todo' | 'doing' | 'done' }>();
 
-  // Retorna o texto do nível de prioridade
   getLevelLabel(): string {
     switch (this.task.level) {
       case 'high': return 'Alta';
@@ -29,17 +26,14 @@ export class TaskCardComponent {
     }
   }
 
-  // Emite evento de edição
   editTask(): void {
     this.onEdit.emit(this.task);
   }
 
-  // Emite evento de exclusão
   deleteTask(): void {
     this.onDelete.emit(this.task.id);
   }
 
-  // Emite evento de movimentação entre colunas
   moveTask(newStatus: 'todo' | 'doing' | 'done'): void {
     if (newStatus !== this.task.status) {
       this.onMove.emit({ id: this.task.id, status: newStatus });

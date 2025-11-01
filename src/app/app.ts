@@ -7,6 +7,4 @@ import { TaskBoardComponent } from './components/task-board/task-board.component
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {
-  // Componente principal que agora usa o TaskBoardComponent
-}
+export class App {}

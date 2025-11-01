@@ -1,13 +1,11 @@
 <div class="bg-slate-50 min-h-screen p-6">
   <div class="max-w-6xl mx-auto">
     
-    <!-- Cabeçalho -->
     <header class="mb-6">
       <h1 class="text-3xl font-bold text-slate-800">Gerenciador de Tarefas - Estudos</h1>
       <p class="text-slate-600 mt-1">Cards em 3 colunas: Para fazer, Em andamento, Concluídas.</p>
     </header>
 
-    <!-- Área de ação com botão de adicionar -->
     <div class="mb-6 flex items-center justify-between">
       <div>
         <p class="text-slate-600">Adicione novas tarefas pelo botão <span class="font-semibold">+</span>.</p>
@@ -22,11 +20,9 @@
       </div>
     </div>
 
-    <!-- Grid com as 3 colunas -->
     <main>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         
-        <!-- Coluna: Para fazer -->
         <div>
           <h2 class="font-semibold mb-2">Para fazer</h2>
           <div class="space-y-3 min-h-[200px] p-3 bg-white rounded shadow-sm">
@@ -39,14 +35,12 @@
               (onMove)="handleMoveTask($event)">
             </app-task-card>
             
-            <!-- Mensagem quando não há tarefas -->
             <p *ngIf="getTodoTasks().length === 0" class="text-sm text-slate-400 text-center py-8">
               Nenhuma tarefa para fazer
             </p>
           </div>
         </div>
 
-        <!-- Coluna: Em andamento -->
         <div>
           <h2 class="font-semibold mb-2">Em andamento</h2>
           <div class="space-y-3 min-h-[200px] p-3 bg-white rounded shadow-sm">
@@ -65,7 +59,6 @@
           </div>
         </div>
 
-        <!-- Coluna: Concluídas -->
         <div>
           <h2 class="font-semibold mb-2">Concluídas</h2>
           <div class="space-y-3 min-h-[200px] p-3 bg-white rounded shadow-sm">
@@ -86,14 +79,12 @@
       </div>
     </main>
 
-    <!-- Rodapé -->
     <footer class="mt-6 text-sm text-slate-500">
       Salvo no armazenamento local do seu navegador.
     </footer>
   </div>
 </div>
 
-<!-- Modal de formulário -->
 <app-task-form
   [isVisible]="isModalVisible"
   [taskToEdit]="taskToEdit"
